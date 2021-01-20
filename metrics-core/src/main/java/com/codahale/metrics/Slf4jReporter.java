@@ -9,10 +9,9 @@ import java.util.SortedMap;
 import java.util.concurrent.TimeUnit;
 
 /**
- * A reporter class for logging metrics values to a SLF4J {@link Logger} periodically, similar to
- * {@link ConsoleReporter} or {@link CsvReporter}, but using the SLF4J framework instead. It also
- * supports specifying a {@link Marker} instance that can be used by custom appenders and filters
- * for the bound logging toolkit to further process metrics reports.
+ *  一个报告程序类，用于定期将metrics值记录到SLF4J中，
+ *  类似于ConsoleReporter或CsvReporter，但改用SLF4J框架。
+ *  它还支持指定Marker实例，供绑定日志工具包的自定义附加程序和过滤器使用该实例，以进一步处理指标报告。
  */
 public class Slf4jReporter extends ScheduledReporter {
     /**
@@ -48,7 +47,7 @@ public class Slf4jReporter extends ScheduledReporter {
         }
 
         /**
-         * Log metrics to the given logger.
+         * 将指标记录到给定的记录器中。
          *
          * @param logger an SLF4J {@link Logger}
          * @return {@code this}
@@ -59,7 +58,7 @@ public class Slf4jReporter extends ScheduledReporter {
         }
 
         /**
-         * Mark all logged metrics with the given marker.
+         * 用给定的标记标记所有记录的指标。
          *
          * @param marker an SLF4J {@link Marker}
          * @return {@code this}

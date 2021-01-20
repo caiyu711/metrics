@@ -1,27 +1,21 @@
 package com.codahale.metrics;
 
 /**
- * A statistically representative reservoir of a data stream.
+ * 一个统计数据的库
  */
 public interface Reservoir {
     /**
-     * Returns the number of values recorded.
-     *
-     * @return the number of values recorded
+     * 返回记录的值的数量
      */
     int size();
 
     /**
-     * Adds a new recorded value to the reservoir.
-     *
-     * @param value a new recorded value
+     * 向库中增加一个新的记录值
      */
     void update(long value);
 
     /**
-     * Returns a snapshot of the reservoir's values.
-     *
-     * @return a snapshot of the reservoir's values
+     * 返回一个存储库中值的快照
      */
     Snapshot getSnapshot();
 }

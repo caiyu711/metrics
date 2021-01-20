@@ -8,7 +8,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * A utility class for detecting deadlocked threads.
+ * 用于检测死锁线程的实用程序类。
  */
 public class ThreadDeadlockDetector {
     private static final int MAX_STACK_TRACE_DEPTH = 100;

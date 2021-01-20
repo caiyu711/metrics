@@ -10,7 +10,7 @@ import java.lang.management.ThreadMXBean;
 import java.nio.charset.Charset;
 
 /**
- * A convenience class for getting a thread dump.
+ * 用于获取线程转储的便利类。
  */
 public class ThreadDump {
     private static final Charset UTF_8 = Charset.forName("UTF-8");

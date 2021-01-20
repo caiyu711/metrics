@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
 import static com.codahale.metrics.MetricRegistry.name;
 
 /**
- * A set of gauges for the counts and elapsed times of garbage collections.
+ * 一组用于收集垃圾的计数和经过时间的统计。
  */
 public class GarbageCollectorMetricSet implements MetricSet {
     private static final Pattern WHITESPACE = Pattern.compile("[\\s]+");

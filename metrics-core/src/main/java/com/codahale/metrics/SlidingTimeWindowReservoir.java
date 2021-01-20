@@ -5,18 +5,17 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
- * A {@link Reservoir} implementation backed by a sliding window that stores only the measurements made
- * in the last {@code N} seconds (or other time unit).
+ * 一个Reservoir实现，使用滑动窗口，该窗口存储了最近的n秒内值。
  */
 public class SlidingTimeWindowReservoir implements Reservoir {
-    // allow for this many duplicate ticks before overwriting measurements
+    // 在覆盖测量之前允许这么多重复的刻度
     private static final int COLLISION_BUFFER = 256;
     // only trim on updating once every N
     private static final int TRIM_THRESHOLD = 256;
 
     private final Clock clock;
     private final ConcurrentSkipListMap<Long, Long> measurements;
-    private final long window;
+    private final long window; // 窗口大小
     private final AtomicLong lastTick;
     private final AtomicLong count;
 

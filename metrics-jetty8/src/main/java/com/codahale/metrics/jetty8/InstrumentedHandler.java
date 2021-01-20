@@ -18,8 +18,7 @@ import static com.codahale.metrics.MetricRegistry.name;
 import static org.eclipse.jetty.http.HttpMethods.*;
 
 /**
- * A Jetty {@link Handler} which records various metrics about an underlying {@link Handler}
- * instance.
+ * 记录有关基础Handler实例的各种指标。
  */
 public class InstrumentedHandler extends HandlerWrapper {
     private static final String PATCH = "PATCH";
@@ -73,6 +72,9 @@ public class InstrumentedHandler extends HandlerWrapper {
                                                              "active-suspended-requests"));
         this.activeDispatches = registry.counter(name(prefix, "active-dispatches"));
 
+        /**
+         * 响应码数量
+         */
         this.responses = new Meter[]{
                 registry.meter(name(prefix, "1xx-responses")), // 1xx
                 registry.meter(name(prefix, "2xx-responses")), // 2xx
@@ -81,6 +83,9 @@ public class InstrumentedHandler extends HandlerWrapper {
                 registry.meter(name(prefix, "5xx-responses"))  // 5xx
         };
 
+        /**
+         * 一分钟内4xx响应码占比
+         */
         registry.register(name(prefix, "percent-4xx-1m"), new RatioGauge() {
             @Override
             protected Ratio getRatio() {
@@ -89,6 +94,9 @@ public class InstrumentedHandler extends HandlerWrapper {
             }
         });
 
+        /**
+         * 五分钟内4xx响应码占比
+         */
         registry.register(name(prefix, "percent-4xx-5m"), new RatioGauge() {
             @Override
             protected Ratio getRatio() {
@@ -97,6 +105,9 @@ public class InstrumentedHandler extends HandlerWrapper {
             }
         });
 
+        /**
+         * 十五分钟内4xx响应码占比
+         */
         registry.register(name(prefix, "percent-4xx-15m"), new RatioGauge() {
             @Override
             protected Ratio getRatio() {
@@ -105,6 +116,9 @@ public class InstrumentedHandler extends HandlerWrapper {
             }
         });
 
+        /**
+         * 一分钟内5xx响应码占比
+         */
         registry.register(name(prefix, "percent-5xx-1m"), new RatioGauge() {
             @Override
             protected Ratio getRatio() {
@@ -113,6 +127,9 @@ public class InstrumentedHandler extends HandlerWrapper {
             }
         });
 
+        /**
+         * 五分钟内5xx响应码占比
+         */
         registry.register(name(prefix, "percent-5xx-5m"), new RatioGauge() {
             @Override
             protected Ratio getRatio() {
@@ -121,6 +138,9 @@ public class InstrumentedHandler extends HandlerWrapper {
             }
         });
 
+        /**
+         * 十五分钟内5xx响应码占比
+         */
         registry.register(name(prefix, "percent-5xx-15m"), new RatioGauge() {
             @Override
             protected Ratio getRatio() {

@@ -10,13 +10,7 @@ import static java.lang.Math.exp;
 import static java.lang.Math.min;
 
 /**
- * An exponentially-decaying random reservoir of {@code long}s. Uses Cormode et al's
- * forward-decaying priority reservoir sampling method to produce a statistically representative
- * sampling reservoir, exponentially biased towards newer entries.
- *
- * @see <a href="http://dimacs.rutgers.edu/~graham/pubs/papers/fwddecay.pdf">
- * Cormode et al. Forward Decay: A Practical Time Decay Model for Streaming Systems. ICDE '09:
- *      Proceedings of the 2009 IEEE International Conference on Data Engineering (2009)</a>
+ * 一个Reservoir实现，实现指数衰减
  */
 public class ExponentiallyDecayingReservoir implements Reservoir {
     private static final int DEFAULT_SIZE = 1028;
@@ -81,10 +75,7 @@ public class ExponentiallyDecayingReservoir implements Reservoir {
     }
 
     /**
-     * Adds an old value with a fixed timestamp to the reservoir.
-     *
-     * @param value     the value to be added
-     * @param timestamp the epoch timestamp of {@code value} in seconds
+     * 将具有固定时间戳记的旧值添加到存储库。
      */
     public void update(long value, long timestamp) {
         rescaleIfNeeded();

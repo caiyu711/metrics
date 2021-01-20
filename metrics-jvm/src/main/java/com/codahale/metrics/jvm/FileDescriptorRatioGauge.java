@@ -8,7 +8,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 /**
- * A gauge for the ratio of used to total file descriptors.
+ * 所用文件描述符与总文件描述符之比的量度。
  */
 public class FileDescriptorRatioGauge extends RatioGauge {
     private final OperatingSystemMXBean os;

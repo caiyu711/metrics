@@ -11,8 +11,7 @@ import java.io.OutputStream;
 import java.lang.management.ManagementFactory;
 
 /**
-* An HTTP servlets which outputs a {@code text/plain} dump of all threads in the VM. Only responds
-* to {@code GET} requests.
+ * 一个HTTP servlet，它输出虚拟机中所有线程的{@code text/plain}转储。仅响应{@code GET}请求。
 */
 public class ThreadDumpServlet extends HttpServlet {
     private static final long serialVersionUID = -2690343532336103046L;

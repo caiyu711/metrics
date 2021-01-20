@@ -15,13 +15,12 @@ import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 /**
- * A servlet which returns the metrics in a given registry as an {@code application/json} response.
+ * 一个Servlet，它以application/json响应的形式返回给定注册表中的指标。
  */
 public class MetricsServlet extends HttpServlet {
     /**
-     * An abstract {@link ServletContextListener} which allows you to programmatically inject the
-     * {@link MetricRegistry}, rate and duration units, and allowed origin for
-     * {@link MetricsServlet}.
+     * 一个抽象的ServletContextListener，允许您以编程方式注入MetricRegistry，速率和持续时间单位
+     * 以及允许MetricsServlet的来源。
      */
     public static abstract class ContextListener implements ServletContextListener {
         /**
@@ -48,7 +47,7 @@ public class MetricsServlet extends HttpServlet {
         }
 
         /**
-         * Returns the {@code Access-Control-Allow-Origin} header value, if any.
+         * 返回 Access-Control-Allow-Origin的header值（如果有）。
          */
         protected String getAllowedOrigin() {
             // use the default

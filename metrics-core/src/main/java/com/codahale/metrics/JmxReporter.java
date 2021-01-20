@@ -14,7 +14,7 @@ import java.util.concurrent.CopyOnWriteArraySet;
 import java.util.concurrent.TimeUnit;
 
 /**
- * A reporter which listens for new metrics and exposes them as namespaced MBeans.
+ * 一个Reporter，用于监听新指标并将其显示为命名空间的MBean。
  */
 public class JmxReporter implements Closeable {
     /**

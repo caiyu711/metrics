@@ -1,11 +1,11 @@
 package com.codahale.metrics;
 
 /**
- * A filter used to determine whether or not a metric should be reported, among other things.
+ * 一个用于确定metrics是否需要被报告的过滤器。
  */
 public interface MetricFilter {
     /**
-     * Matches all metrics, regardless of type or name.
+     * 匹配所有指标，无论类型或名称如何
      */
     MetricFilter ALL = new MetricFilter() {
         @Override
@@ -15,7 +15,7 @@ public interface MetricFilter {
     };
 
     /**
-     * Returns {@code true} if the metric matches the filter; {@code false} otherwise.
+     * 判断metrics与过滤条件是否匹配
      *
      * @param name      the metric's name
      * @param metric    the metric

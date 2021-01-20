@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 /**
- * An HTTP servlets which outputs a {@code text/plain} {@code "pong"} response.
+ * 一个HTTP Servlet，输出一个{@code text/plain} {@code“ pong”}响应。
  */
 public class PingServlet extends HttpServlet {
     private static final long serialVersionUID = 3772654177231086757L;

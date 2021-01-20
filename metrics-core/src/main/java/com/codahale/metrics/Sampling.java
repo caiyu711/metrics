@@ -1,13 +1,11 @@
 package com.codahale.metrics;
 
 /**
- * An object which samples values.
+ * 采样值对象
  */
 public interface Sampling {
     /**
-     * Returns a snapshot of the values.
-     *
-     * @return a snapshot of the values
+     * 返回值得快照
      */
     Snapshot getSnapshot();
 }

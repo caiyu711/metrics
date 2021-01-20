@@ -6,7 +6,8 @@ import javax.management.ObjectName;
 import java.lang.management.ManagementFactory;
 
 /**
- * A {@link Gauge} implementation which queries a {@link MBeanServer} for an attribute of an object.
+ * 一个Gauge的实现，实现了查询一个MBeanServer对象的属性
+ * 有关MBeanServer {@see "https://blog.csdn.net/u013256816/article/details/52800742"}
  */
 public class JmxAttributeGauge implements Gauge<Object> {
     private final MBeanServer mBeanServer;
@@ -14,21 +15,19 @@ public class JmxAttributeGauge implements Gauge<Object> {
     private final String attributeName;
 
     /**
-     * Creates a new JmxAttributeGauge.
-     *
-     * @param objectName    the name of the object
-     * @param attributeName the name of the object's attribute
+     * 创建一个JmxAttributeGauge对象
+     * @param objectName    对象名
+     * @param attributeName 对象属性名
      */
     public JmxAttributeGauge(ObjectName objectName, String attributeName) {
         this(ManagementFactory.getPlatformMBeanServer(), objectName, attributeName);
     }
 
     /**
-     * Creates a new JmxAttributeGauge.
-     *
-     * @param mBeanServer      the {@link MBeanServer}
-     * @param objectName       the name of the object
-     * @param attributeName    the name of the object's attribute
+     * 创建一个JmxAttributeGauge对象
+     * @param mBeanServer      mBeanServer对象
+     * @param objectName       对象名
+     * @param attributeName    对象属性名
      */
     public JmxAttributeGauge(MBeanServer mBeanServer, ObjectName objectName, String attributeName) {
         this.mBeanServer = mBeanServer;
@@ -36,6 +35,9 @@ public class JmxAttributeGauge implements Gauge<Object> {
         this.attributeName = attributeName;
     }
 
+    /**
+     * 实现了Gauge.getValue()方法
+     */
     @Override
     public Object getValue() {
         try {

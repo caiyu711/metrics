@@ -3,8 +3,7 @@ package com.codahale.metrics;
 import static java.lang.Math.min;
 
 /**
- * A {@link Reservoir} implementation backed by a sliding window that stores the last {@code N}
- * measurements.
+ * 一个Reservoir实现，使用滑动窗口，该窗口存储了最近的n个测量值。
  */
 public class SlidingWindowReservoir implements Reservoir {
     private final long[] measurements;
@@ -13,7 +12,7 @@ public class SlidingWindowReservoir implements Reservoir {
     /**
      * Creates a new {@link SlidingWindowReservoir} which stores the last {@code size} measurements.
      *
-     * @param size the number of measurements to store
+     * @param size 存储的最近size个值
      */
     public SlidingWindowReservoir(int size) {
         this.measurements = new long[size];
@@ -27,7 +26,7 @@ public class SlidingWindowReservoir implements Reservoir {
 
     @Override
     public synchronized void update(long value) {
-        measurements[(int) (count++ % measurements.length)] = value;
+        measurements[(int) (count++ % measurements.length)] = value; // 超过后从头开始覆盖
     }
 
     @Override

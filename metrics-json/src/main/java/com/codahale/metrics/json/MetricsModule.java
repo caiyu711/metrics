@@ -14,6 +14,9 @@ import java.util.Arrays;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * 自定义了一个Metrics序列化方法并注册到Jackson
+ */
 public class MetricsModule extends Module {
     static final Version VERSION = new Version(3, 0, 0, "", "com.codahale.metrics", "metrics-json");
 

@@ -7,6 +7,9 @@ import net.sf.ehcache.constructs.CacheDecoratorFactory;
 
 import java.util.Properties;
 
+/**
+ * InstrumentedCache装饰工厂类
+ */
 public class InstrumentedCacheDecoratorFactory extends CacheDecoratorFactory {
     @Override
     public Ehcache createDecoratedEhcache(Ehcache cache, Properties properties) {

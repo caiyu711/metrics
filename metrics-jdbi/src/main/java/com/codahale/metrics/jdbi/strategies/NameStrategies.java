@@ -9,6 +9,9 @@ import java.util.regex.Pattern;
 
 import static com.codahale.metrics.MetricRegistry.name;
 
+/**
+ * 命名策略
+ */
 public final class NameStrategies {
     public static final StatementNameStrategy CHECK_EMPTY = new CheckEmptyStrategy();
     public static final StatementNameStrategy CHECK_RAW = new CheckRawStrategy();
@@ -51,6 +54,9 @@ public final class NameStrategies {
         return name("sql", "raw", rawSql);
     }
 
+    /**
+     * 校验空sql
+     */
     static final class CheckEmptyStrategy implements StatementNameStrategy {
         private CheckEmptyStrategy() {
         }
@@ -66,6 +72,9 @@ public final class NameStrategies {
         }
     }
 
+    /**
+     * 校验原生sql
+     */
     static final class CheckRawStrategy implements StatementNameStrategy {
         private CheckRawStrategy() {
         }

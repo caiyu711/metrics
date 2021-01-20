@@ -6,15 +6,13 @@ import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
- * A registry of metric instances.
+ * 一个metrics实例的注册表。
  */
 public class MetricRegistry implements MetricSet {
     /**
-     * Concatenates elements to form a dotted name, eliding any null values or empty strings.
-     *
-     * @param name     the first element of the name
-     * @param names    the remaining elements of the name
-     * @return {@code name} and {@code names} concatenated by periods
+     * 名称以.连接
+     * @param name  第一个名称
+     * @param names 剩余名称
      */
     public static String name(String name, String... names) {
         final StringBuilder builder = new StringBuilder();
@@ -28,17 +26,16 @@ public class MetricRegistry implements MetricSet {
     }
 
     /**
-     * Concatenates a class name and elements to form a dotted name, eliding any null values or
-     * empty strings.
-     *
-     * @param klass    the first element of the name
-     * @param names    the remaining elements of the name
-     * @return {@code klass} and {@code names} concatenated by periods
+     * @param klass    类，用类名作为第一个名称
+     * @param names    剩下的名称
      */
     public static String name(Class<?> klass, String... names) {
         return name(klass.getName(), names);
     }
 
+    /**
+     * 连接函数
+     */
     private static void append(StringBuilder builder, String part) {
         if (part != null && !part.isEmpty()) {
             if (builder.length() > 0) {
@@ -71,7 +68,7 @@ public class MetricRegistry implements MetricSet {
     }
 
     /**
-     * Given a {@link Metric}, registers it under the given name.
+     * 给定一个Metric，并以给定名称进行注册
      *
      * @param name   the name of the metric
      * @param metric the metric
@@ -95,17 +92,17 @@ public class MetricRegistry implements MetricSet {
     }
 
     /**
-     * Given a metric set, registers them.
+     * 给定一组Metric，进行注册
      *
      * @param metrics    a set of metrics
-     * @throws IllegalArgumentException if any of the names are already registered
+     * @throws IllegalArgumentException 当有一个重复时就会报错
      */
     public void registerAll(MetricSet metrics) throws IllegalArgumentException {
         registerAll(null, metrics);
     }
 
     /**
-     * Creates a new {@link Counter} and registers it under the given name.
+     * 创建一个新的Counter并将其注册为给定名称。
      *
      * @param name the name of the metric
      * @return a new {@link Counter}
@@ -115,7 +112,7 @@ public class MetricRegistry implements MetricSet {
     }
 
     /**
-     * Creates a new {@link Histogram} and registers it under the given name.
+     * 创建一个新的Histogram并将其注册为给定名称。
      *
      * @param name the name of the metric
      * @return a new {@link Histogram}
@@ -125,7 +122,7 @@ public class MetricRegistry implements MetricSet {
     }
 
     /**
-     * Creates a new {@link Meter} and registers it under the given name.
+     * 创建一个新的Meter并将其注册为给定名称。
      *
      * @param name the name of the metric
      * @return a new {@link Meter}
@@ -135,7 +132,7 @@ public class MetricRegistry implements MetricSet {
     }
 
     /**
-     * Creates a new {@link Timer} and registers it under the given name.
+     * 创建一个新的Timer并将其注册为给定名称。
      *
      * @param name the name of the metric
      * @return a new {@link Timer}
@@ -145,7 +142,7 @@ public class MetricRegistry implements MetricSet {
     }
 
     /**
-     * Removes the metric with the given name.
+     * 移除指定名称的metrics
      *
      * @param name the name of the metric
      * @return whether or not the metric was removed
@@ -160,7 +157,7 @@ public class MetricRegistry implements MetricSet {
     }
 
     /**
-     * Removes all metrics which match the given filter.
+     * 删除所有与给定过滤器匹配的Metrics
      *
      * @param filter a filter
      */
@@ -173,10 +170,9 @@ public class MetricRegistry implements MetricSet {
     }
 
     /**
-     * Adds a {@link MetricRegistryListener} to a collection of listeners that will be notified on
-     * metric creation.  Listeners will be notified in the order in which they are added.
-     * <p/>
-     * <b>N.B.:</b> The listener will be notified of all existing metrics when it first registers.
+     * 将一个MetricRegistryListener添加到监听器集合中。
+     * 监听器将按照添加顺序通知。
+     * 监听器在首次注册时将收到所有现有Metrics的通知。（将所有现有Metrics添加到这个新注册表中）
      *
      * @param listener the listener that will be notified
      */
@@ -189,120 +185,97 @@ public class MetricRegistry implements MetricSet {
     }
 
     /**
-     * Removes a {@link MetricRegistryListener} from this registry's collection of listeners.
-     *
-     * @param listener the listener that will be removed
+     * 从注册表集合中移除一个MetricRegistryListener
      */
     public void removeListener(MetricRegistryListener listener) {
         listeners.remove(listener);
     }
 
     /**
-     * Returns a set of the names of all the metrics in the registry.
-     *
-     * @return the names of all the metrics
+     * 返货所有现有metrics的名称
+     * 返回的是一个不可被操作的对象unmodifiableSortedSet
      */
     public SortedSet<String> getNames() {
         return Collections.unmodifiableSortedSet(new TreeSet<String>(metrics.keySet()));
     }
 
     /**
-     * Returns a map of all the gauges in the registry and their names.
-     *
-     * @return all the gauges in the registry
+     * 返回注册表中所有满足过滤条件的Gauge及其名称
      */
     public SortedMap<String, Gauge> getGauges() {
         return getGauges(MetricFilter.ALL);
     }
 
     /**
-     * Returns a map of all the gauges in the registry and their names which match the given filter.
-     *
-     * @param filter    the metric filter to match
-     * @return all the gauges in the registry
+     * 返回注册表中所有满足过滤条件的Gauge及其名称
      */
     public SortedMap<String, Gauge> getGauges(MetricFilter filter) {
         return getMetrics(Gauge.class, filter);
     }
 
     /**
-     * Returns a map of all the counters in the registry and their names.
-     *
-     * @return all the counters in the registry
+     * 返回注册表中所有满足过滤条件的Counter及其名称
      */
     public SortedMap<String, Counter> getCounters() {
         return getCounters(MetricFilter.ALL);
     }
 
     /**
-     * Returns a map of all the counters in the registry and their names which match the given
-     * filter.
-     *
-     * @param filter    the metric filter to match
-     * @return all the counters in the registry
+     * 返回注册表中所有满足过滤条件的Counter及其名称
      */
     public SortedMap<String, Counter> getCounters(MetricFilter filter) {
         return getMetrics(Counter.class, filter);
     }
 
     /**
-     * Returns a map of all the histograms in the registry and their names.
-     *
-     * @return all the histograms in the registry
+     * 返回注册表中所有满足过滤条件的Histogram及其名称
      */
     public SortedMap<String, Histogram> getHistograms() {
         return getHistograms(MetricFilter.ALL);
     }
 
     /**
-     * Returns a map of all the histograms in the registry and their names which match the given
-     * filter.
-     *
-     * @param filter    the metric filter to match
-     * @return all the histograms in the registry
+     * 返回注册表中所有满足过滤条件的Histogram及其名称
      */
     public SortedMap<String, Histogram> getHistograms(MetricFilter filter) {
         return getMetrics(Histogram.class, filter);
     }
 
     /**
-     * Returns a map of all the meters in the registry and their names.
-     *
-     * @return all the meters in the registry
+     * 返回注册表中所有满足过滤条件的Meter及其名称
      */
     public SortedMap<String, Meter> getMeters() {
         return getMeters(MetricFilter.ALL);
     }
 
     /**
-     * Returns a map of all the meters in the registry and their names which match the given filter.
-     *
-     * @param filter    the metric filter to match
-     * @return all the meters in the registry
+     * 返回注册表中所有满足过滤条件的Meter及其名称
      */
     public SortedMap<String, Meter> getMeters(MetricFilter filter) {
         return getMetrics(Meter.class, filter);
     }
 
     /**
-     * Returns a map of all the timers in the registry and their names.
-     *
-     * @return all the timers in the registry
+     * 返回注册表中所有满足过滤条件的Timer及其名称
      */
     public SortedMap<String, Timer> getTimers() {
         return getTimers(MetricFilter.ALL);
     }
 
     /**
-     * Returns a map of all the timers in the registry and their names which match the given filter.
-     *
-     * @param filter    the metric filter to match
-     * @return all the timers in the registry
+     * 返回注册表中所有满足过滤条件的Timer及其名称
      */
     public SortedMap<String, Timer> getTimers(MetricFilter filter) {
         return getMetrics(Timer.class, filter);
     }
 
+    /**
+     * 获取或者添加一个Metrics
+     * @param name
+     * @param builder
+     * @param <T>
+     * @return
+     */
     @SuppressWarnings("unchecked")
     private <T extends Metric> T getOrAdd(String name, MetricBuilder<T> builder) {
         final Metric metric = metrics.get(name);
@@ -321,6 +294,14 @@ public class MetricRegistry implements MetricSet {
         throw new IllegalArgumentException(name + " is already used for a different type of metric");
     }
 
+    /**
+     * 指定一个metrics类型，指定一个metricsFilter
+     * 返回所有现有Metrics中，符合指定类型且满足过滤条件的metrics map
+     * @param klass 指定的metrics类型
+     * @param filter 指定的过滤器
+     * @param <T> Metrics类型
+     * @return
+     */
     @SuppressWarnings("unchecked")
     private <T extends Metric> SortedMap<String, T> getMetrics(Class<T> klass, MetricFilter filter) {
         final TreeMap<String, T> timers = new TreeMap<String, T>();
@@ -333,12 +314,22 @@ public class MetricRegistry implements MetricSet {
         return Collections.unmodifiableSortedMap(timers);
     }
 
+    /**
+     * 新增Metrics到注册表中
+     * @param name
+     * @param metric
+     */
     private void onMetricAdded(String name, Metric metric) {
         for (MetricRegistryListener listener : listeners) {
             notifyListenerOfAddedMetric(listener, metric, name);
         }
     }
 
+    /**
+     * 新增Metrics到注册表中，判断Metrics类型
+     * @param name
+     * @param metric
+     */
     private void notifyListenerOfAddedMetric(MetricRegistryListener listener, Metric metric, String name) {
         if (metric instanceof Gauge) {
             listener.onGaugeAdded(name, (Gauge<?>) metric);
@@ -355,6 +346,11 @@ public class MetricRegistry implements MetricSet {
         }
     }
 
+    /**
+     * 从注册表中移除
+     * @param name
+     * @param metric
+     */
     private void onMetricRemoved(String name, Metric metric) {
         for (MetricRegistryListener listener : listeners) {
             notifyListenerOfRemovedMetric(name, metric, listener);
@@ -387,6 +383,11 @@ public class MetricRegistry implements MetricSet {
         }
     }
 
+    /**
+     * 返回所有注册的Metrics
+     * 注意这里返回的是一个不可修改的视图UnmodifiableMap
+     * @return
+     */
     @Override
     public Map<String, Metric> getMetrics() {
         return Collections.unmodifiableMap(metrics);
@@ -394,6 +395,7 @@ public class MetricRegistry implements MetricSet {
 
     /**
      * A quick and easy way of capturing the notion of default metrics.
+     * 一个快速简便的方法创建默认Metrics
      */
     private interface MetricBuilder<T extends Metric> {
         MetricBuilder<Counter> COUNTERS = new MetricBuilder<Counter>() {

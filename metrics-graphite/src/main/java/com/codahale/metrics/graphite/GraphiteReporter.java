@@ -11,9 +11,7 @@ import java.util.SortedMap;
 import java.util.concurrent.TimeUnit;
 
 /**
- * A reporter which publishes metric values to a Graphite server.
- *
- * @see <a href="http://graphite.wikidot.com/">Graphite - Scalable Realtime Graphing</a>
+ * 一个ScheduledReporter实现类，用于将metrics发布到Graphite服务器
  */
 public class GraphiteReporter extends ScheduledReporter {
     /**

@@ -10,6 +10,9 @@ import java.net.URISyntaxException;
 
 import static com.codahale.metrics.MetricRegistry.name;
 
+/**
+ * http请求中metrics名称策略（具体实现）
+ */
 public class HttpClientMetricNameStrategies {
 
     public static final HttpClientMetricNameStrategy METHOD_ONLY =

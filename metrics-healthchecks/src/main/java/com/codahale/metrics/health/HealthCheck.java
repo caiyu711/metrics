@@ -1,40 +1,35 @@
 package com.codahale.metrics.health;
 
 /**
- * A health check for a component of your application.
+ * 应用程序组件的运行状况检查。(健康检查)
  */
 public abstract class HealthCheck {
     /**
-     * The result of a {@link HealthCheck} being run. It can be healthy (with an optional message)
-     * or unhealthy (with either an error message or a thrown exception).
+     * 运行HealthCheck的结果。它可以是健康的（带有可选消息）或不健康的（带有错误消息或抛出异常）。
      */
     public static class Result {
+        /**
+         * 定义了一个健康对象HEALTHY
+         */
         private static final Result HEALTHY = new Result(true, null, null);
         private static final int PRIME = 31;
 
         /**
-         * Returns a healthy {@link Result} with no additional message.
-         *
-         * @return a healthy {@link Result} with no additional message
+         * 返回健康的{@link Result}，没有附加消息。
          */
         public static Result healthy() {
             return HEALTHY;
         }
 
         /**
-         * Returns a healthy {@link Result} with an additional message.
-         *
-         * @param message an informative message
-         * @return a healthy {@link Result} with an additional message
+         * 返回带有附加消息的健康{@link Result}。
          */
         public static Result healthy(String message) {
             return new Result(true, message, null);
         }
 
         /**
-         * Returns a healthy {@link Result} with a formatted message.
-         * <p/>
-         * Message formatting follows the same rules as {@link String#format(String, Object...)}.
+         * 返回带有格式信息的健康{@link Result}
          *
          * @param message a message format
          * @param args    the arguments apply to the message format
@@ -46,19 +41,14 @@ public abstract class HealthCheck {
         }
 
         /**
-         * Returns an unhealthy {@link Result} with the given message.
-         *
-         * @param message an informative message describing how the health check failed
-         * @return an unhealthy {@link Result} with the given message
+         * 返回带有附加消息的不健康{@link Result}。
          */
         public static Result unhealthy(String message) {
             return new Result(false, message, null);
         }
 
         /**
-         * Returns an unhealthy {@link Result} with a formatted message.
-         * <p/>
-         * Message formatting follows the same rules as {@link String#format(String, Object...)}.
+         * 返回带有格式信息的不健康{@link Result}
          *
          * @param message a message format
          * @param args    the arguments apply to the message format
@@ -70,10 +60,7 @@ public abstract class HealthCheck {
         }
 
         /**
-         * Returns an unhealthy {@link Result} with the given error.
-         *
-         * @param error an exception thrown during the health check
-         * @return an unhealthy {@link Result} with the given error
+         * 返回带有异常信息和异常的不健康{@link Result}
          */
         public static Result unhealthy(Throwable error) {
             return new Result(false, error.getMessage(), error);
@@ -83,6 +70,12 @@ public abstract class HealthCheck {
         private final String message;
         private final Throwable error;
 
+        /**
+         * 构造函数
+         * @param isHealthy
+         * @param message
+         * @param error
+         */
         private Result(boolean isHealthy, String message, Throwable error) {
             this.healthy = isHealthy;
             this.message = message;
@@ -162,10 +155,7 @@ public abstract class HealthCheck {
     protected abstract Result check() throws Exception;
 
     /**
-     * Executes the health check, catching and handling any exceptions raised by {@link #check()}.
-     *
-     * @return if the component is healthy, a healthy {@link Result}; otherwise, an unhealthy {@link
-     *         Result} with a descriptive error message or exception
+     * 执行运行状况检查，捕获并处理check()引发的所有异常。
      */
     public Result execute() {
         try {

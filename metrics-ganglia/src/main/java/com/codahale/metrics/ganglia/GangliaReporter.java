@@ -15,9 +15,7 @@ import java.util.concurrent.TimeUnit;
 import static com.codahale.metrics.MetricRegistry.name;
 
 /**
- * A reporter which announces metric values to a Ganglia cluster.
- *
- * @see <a href="http://ganglia.sourceforge.net/">Ganglia Monitoring System</a>
+ * 一个Reporter实现类，向Ganglia集群中投递metrics
  */
 public class GangliaReporter extends ScheduledReporter {
     /**

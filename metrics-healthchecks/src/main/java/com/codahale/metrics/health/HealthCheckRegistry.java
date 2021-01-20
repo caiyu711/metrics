@@ -9,7 +9,7 @@ import java.util.concurrent.*;
 import static com.codahale.metrics.health.HealthCheck.Result;
 
 /**
- * A registry for health checks.
+ * 健康检查的注册表
  */
 public class HealthCheckRegistry {
     private static final Logger LOGGER = LoggerFactory.getLogger(HealthCheckRegistry.class);
@@ -81,7 +81,7 @@ public class HealthCheckRegistry {
     }
 
     /**
-     * Runs the registered health checks in parallel and returns a map of the results.
+     * 并行执行所有健康检查
      *
      * @return a map of the health check results
      */

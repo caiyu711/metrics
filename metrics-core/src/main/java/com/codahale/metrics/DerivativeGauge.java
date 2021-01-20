@@ -1,33 +1,31 @@
 package com.codahale.metrics;
 
 /**
- * A gauge whose value is derived from the value of another gauge.
- *
- * @param <F> the base gauge's value type
- * @param <T> the derivative type
+ *  Gauge的一个实现类，其值是由另一个Gauge对象传递的
+ *  F 为传递对象的类型
+ *  T 为被传递的对象类型
  */
 public abstract class DerivativeGauge<F, T> implements Gauge<T> {
-    private final Gauge<F> base;
+    private final Gauge<F> base; // 传递的对象
 
     /**
-     * Creates a new derivative with the given base gauge.
-     *
-     * @param base the gauge from which to derive this gauge's value
+     * 构造函数
      */
     protected DerivativeGauge(Gauge<F> base) {
         this.base = base;
     }
 
+    /**
+     * 实现Gauge.getValue()方法
+     */
     @Override
     public T getValue() {
         return transform(base.getValue());
     }
 
     /**
-     * Transforms the value of the base gauge to the value of this gauge.
-     *
-     * @param value the value of the base gauge
-     * @return this gauge's value
+     * 将base的value值转换成该gauge对象值
+     * 创建DerivativeGauge对象需要实现该方法
      */
     protected abstract T transform(F value);
 }

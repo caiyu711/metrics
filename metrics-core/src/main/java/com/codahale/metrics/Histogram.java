@@ -1,10 +1,7 @@
 package com.codahale.metrics;
 
 /**
- * A metric which calculates the distribution of a value.
- *
- * @see <a href="http://www.johndcook.com/standard_deviation.html">Accurately computing running
- *      variance</a>
+ * 一个计算值分布的度量——直方图
  */
 public class Histogram implements Metric, Sampling, Counting {
     private final Reservoir reservoir;

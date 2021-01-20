@@ -1,56 +1,34 @@
 package com.codahale.metrics;
 
 /**
- * An object which maintains mean and exponentially-weighted rate.
+ * 一个计算均值和指数加权速率的度量对象
  */
 public interface Metered extends Metric, Counting {
     /**
-     * Returns the number of events which have been marked.
-     *
-     * @return the number of events which have been marked
+     * 返回已标记的事件数量
      */
     long getCount();
 
     /**
-     * Returns the fifteen-minute exponentially-weighted moving average rate at which events have
-     * occurred since the meter was created.
-     * <p/>
-     * This rate has the same exponential decay factor as the fifteen-minute load average in the
-     * {@code top} Unix command.
-     *
-     * @return the fifteen-minute exponentially-weighted moving average rate at which events have
-     *         occurred since the meter was created
+     * 返回近15分钟的指数加权速率
+     * 该速率与Unix命令中15分钟的平均负载具有相同的指数衰减因子
      */
     double getFifteenMinuteRate();
 
     /**
-     * Returns the five-minute exponentially-weighted moving average rate at which events have
-     * occurred since the meter was created.
-     * <p/>
-     * This rate has the same exponential decay factor as the five-minute load average in the {@code
-     * top} Unix command.
-     *
-     * @return the five-minute exponentially-weighted moving average rate at which events have
-     *         occurred since the meter was created
+     * 返回近5分钟的指数加权速率
+     * 该速率与Unix命令中5分钟的平均负载具有相同的指数衰减因子
      */
     double getFiveMinuteRate();
 
     /**
-     * Returns the mean rate at which events have occurred since the meter was created.
-     *
-     * @return the mean rate at which events have occurred since the meter was created
+     * 返回平均指数加权速率
      */
     double getMeanRate();
 
     /**
-     * Returns the one-minute exponentially-weighted moving average rate at which events have
-     * occurred since the meter was created.
-     * <p/>
-     * This rate has the same exponential decay factor as the one-minute load average in the {@code
-     * top} Unix command.
-     *
-     * @return the one-minute exponentially-weighted moving average rate at which events have
-     *         occurred since the meter was created
+     * 返回近1分钟的指数加权速率
+     * 该速率与Unix命令中1分钟的平均负载具有相同的指数衰减因子
      */
     double getOneMinuteRate();
 }

@@ -10,8 +10,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * The abstract base class for all scheduled reporters (i.e., reporters which process a registry's
- * metrics periodically).
+ * 所有Reporter（即定期处理注册中心指标的对象）的抽象基类。
  *
  * @see ConsoleReporter
  * @see CsvReporter
@@ -19,7 +18,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 public abstract class ScheduledReporter implements Closeable {
     /**
-     * A simple named thread factory.
+     * 一个简单的命名线程工厂。
      */
     @SuppressWarnings("NullableProblems")
     private static class NamedThreadFactory implements ThreadFactory {
@@ -75,7 +74,7 @@ public abstract class ScheduledReporter implements Closeable {
     }
 
     /**
-     * Starts the reporter polling at the given period.
+     * 在指定时间段进行轮询。
      *
      * @param period the amount of time between polls
      * @param unit   the unit for {@code period}
@@ -90,7 +89,7 @@ public abstract class ScheduledReporter implements Closeable {
     }
 
     /**
-     * Stops the reporter and shuts down its thread of execution.
+     * 停止报告程序并关闭其执行线程。
      */
     public void stop() {
         executor.shutdown();
@@ -102,7 +101,7 @@ public abstract class ScheduledReporter implements Closeable {
     }
 
     /**
-     * Stops the reporter and shuts down its thread of execution.
+     * 停止报告程序并关闭其执行线程。
      */
     @Override
     public void close() {
@@ -110,7 +109,7 @@ public abstract class ScheduledReporter implements Closeable {
     }
 
     /**
-     * Report the current values of all metrics in the registry.
+     * 报告注册表中所有指标的当前值。
      */
     public void report() {
         report(registry.getGauges(filter),
@@ -121,7 +120,7 @@ public abstract class ScheduledReporter implements Closeable {
     }
 
     /**
-     * Called periodically by the polling thread. Subclasses should report all the given metrics.
+     * 由轮询线程定期调用。子类应报告所有给定的指标。
      *
      * @param gauges     all of the gauges in the registry
      * @param counters   all of the counters in the registry

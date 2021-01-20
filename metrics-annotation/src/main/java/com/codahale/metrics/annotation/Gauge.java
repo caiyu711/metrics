@@ -6,18 +6,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * An annotation for marking a method of an annotated object as a gauge.
- * <p/>
- * Given a method like this:
- * <pre><code>
- *     {@literal @}Gauge(name = "queueSize")
- *     public int getQueueSize() {
- *         return queue.size;
- *     }
- * </code></pre>
- * <p/>
- * A gauge for the defining class with the name {@code queueSize} will be created which uses the
- * annotated method's return value as its value.
+ * 一个注释，用于将一个带注释对象的方法标记为Gauge。
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ ElementType.METHOD, ElementType.FIELD })
@@ -28,8 +17,7 @@ public @interface Gauge {
     String name() default "";
 
     /**
-     * If {@code true}, use the given name as an absolute name. If {@code false}, use the given name
-     * relative to the annotated class.
+     * 如果{@code true}，则使用给定名称作为绝对名称。如果{@code false}，则使用相对于带注释的类的给定名称。
      */
     boolean absolute() default false;
 }

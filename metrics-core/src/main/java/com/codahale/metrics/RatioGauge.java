@@ -4,40 +4,32 @@ import static java.lang.Double.isInfinite;
 import static java.lang.Double.isNaN;
 
 /**
- * A gauge which measures the ratio of one value to another.
- * <p/>
- * If the denominator is zero, not a number, or infinite, the resulting ratio is not a number.
+ * Gauge的一个实现类，用来计算一个值与另一个值的比（Double）
+ * 如果分母为0、或NaN、或INFINITY，返回NaN
  */
 public abstract class RatioGauge implements Gauge<Double> {
     /**
-     * A ratio of one quantity to another.
+     * Radio类
      */
     public static class Ratio {
         /**
-         * Creates a new ratio with the given numerator and denominator.
-         *
-         * @param numerator      the numerator of the ratio
-         * @param denominator    the denominator of the ratio
-         * @return {@code numerator:denominator}
+         * 创建一个Radio对象，指定分子和分母
          */
         public static Ratio of(double numerator, double denominator) {
             return new Ratio(numerator, denominator);
         }
 
-        private final double numerator;
-        private final double denominator;
+        private final double numerator; // 分子
+        private final double denominator; // 分母
 
+        /**
+         * 构造函数
+         */
         private Ratio(double numerator, double denominator) {
             this.numerator = numerator;
             this.denominator = denominator;
         }
 
-        /**
-         * Returns the ratio, which is either a {@code double} between 0 and 1 (inclusive) or
-         * {@code NaN}.
-         *
-         * @return the ratio
-         */
         public double getValue() {
             final double d = denominator;
             if (isNaN(d) || isInfinite(d) || d == 0) {
@@ -53,12 +45,14 @@ public abstract class RatioGauge implements Gauge<Double> {
     }
 
     /**
-     * Returns the {@link Ratio} which is the gauge's current value.
-     *
-     * @return the {@link Ratio} which is the gauge's current value
+     * 获取Radio对象，定义RatioGauge对象时候需要实现
      */
     protected abstract Ratio getRatio();
 
+    /**
+     * 实现Gauge.getValue()
+     * @return
+     */
     @Override
     public Double getValue() {
         return getRatio().getValue();

@@ -17,8 +17,7 @@ import java.util.concurrent.ConcurrentMap;
 import static com.codahale.metrics.MetricRegistry.name;
 
 /**
- * {@link Filter} implementation which captures request information and a breakdown of the response
- * codes being returned.
+ * Filter实现 用户捕获请求信息和返回的响应
  */
 public abstract class AbstractInstrumentedFilter implements Filter {
     private final String otherMetricName;

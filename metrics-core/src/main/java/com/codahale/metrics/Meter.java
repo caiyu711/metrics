@@ -4,8 +4,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
- * A meter metric which measures mean throughput and one-, five-, and fifteen-minute
- * exponentially-weighted moving average throughputs.
+ *  一种度量标准，用于测量平均吞吐量以及一分钟，五分钟和十五分钟指数加权移动平均吞吐量。（速率）
  *
  * @see EWMA
  */
@@ -40,16 +39,14 @@ public class Meter implements Metered {
     }
 
     /**
-     * Mark the occurrence of an event.
+     * 标记事件发生数 1
      */
     public void mark() {
         mark(1);
     }
 
     /**
-     * Mark the occurrence of a given number of events.
-     *
-     * @param n the number of events
+     * 标记事件发生数 n
      */
     public void mark(long n) {
         tickIfNecessary();

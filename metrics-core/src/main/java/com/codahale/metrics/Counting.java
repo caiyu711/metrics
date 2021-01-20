@@ -1,13 +1,11 @@
 package com.codahale.metrics;
 
 /**
- * An interface for metric types which have counts.
+ * 一个度量类型接口，拥有计数器
  */
 public interface Counting {
     /**
-     * Returns the current count.
-     *
-     * @return the current count
+     * 返回当前计数
      */
     long getCount();
 }

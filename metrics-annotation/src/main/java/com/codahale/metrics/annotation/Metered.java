@@ -6,18 +6,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * An annotation for marking a method of an annotated object as metered.
- * <p/>
- * Given a method like this:
- * <pre><code>
- *     {@literal @}Metered(name = "fancyName")
- *     public String fancyName(String name) {
- *         return "Sir Captain " + name;
- *     }
- * </code></pre>
- * <p/>
- * A meter for the defining class with the name {@code fancyName} will be created and each time the
- * {@code #fancyName(String)} method is invoked, the meter will be marked.
+ * 一个注释，用于将一个带注释对象的方法标记为Meter。
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)

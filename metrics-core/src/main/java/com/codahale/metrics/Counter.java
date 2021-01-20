@@ -1,7 +1,7 @@
 package com.codahale.metrics;
 
 /**
- * An incrementing and decrementing counter metric.
+ * 一个可以递增或递减的计数度量
  */
 public class Counter implements Metric, Counting {
     private final LongAdder count;
@@ -11,41 +11,35 @@ public class Counter implements Metric, Counting {
     }
 
     /**
-     * Increment the counter by one.
+     * 计数器 +1
      */
     public void inc() {
         inc(1);
     }
 
     /**
-     * Increment the counter by {@code n}.
-     *
-     * @param n the amount by which the counter will be increased
+     * 计数器 +n
      */
     public void inc(long n) {
         count.add(n);
     }
 
     /**
-     * Decrement the counter by one.
+     * 计数器 -1
      */
     public void dec() {
         dec(1);
     }
 
     /**
-     * Decrement the counter by {@code n}.
-     *
-     * @param n the amount by which the counter will be decreased
+     * 计数器 -n
      */
     public void dec(long n) {
         count.add(-n);
     }
 
     /**
-     * Returns the counter's current value.
-     *
-     * @return the counter's current value
+     * 获取当前计数器的值
      */
     @Override
     public long getCount() {

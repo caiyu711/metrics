@@ -6,6 +6,7 @@ import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 /**
+ * 一个Reporter实现类
  * A reporter which outputs measurements to a {@link PrintStream}, like {@code System.out}.
  */
 public class ConsoleReporter extends ScheduledReporter {

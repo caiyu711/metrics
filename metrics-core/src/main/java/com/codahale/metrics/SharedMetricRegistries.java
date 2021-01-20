@@ -6,6 +6,7 @@ import java.util.concurrent.ConcurrentMap;
 
 /**
  * A map of shared, named metric registries.
+ * 共享的命名metrics标准注册表的映射
  */
 public class SharedMetricRegistries {
     private static final ConcurrentMap<String, MetricRegistry> REGISTRIES =

@@ -12,6 +12,9 @@ import com.codahale.metrics.health.HealthCheck;
 import java.io.IOException;
 import java.util.Arrays;
 
+/**
+ * 自定义了一个HealthCheck序列化方法并注册到Jackson
+ */
 public class HealthCheckModule extends Module {
     private static class HealthCheckResultSerializer extends StdSerializer<HealthCheck.Result> {
         private HealthCheckResultSerializer() {

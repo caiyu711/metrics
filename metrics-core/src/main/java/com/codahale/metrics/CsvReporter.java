@@ -11,7 +11,7 @@ import java.util.SortedMap;
 import java.util.concurrent.TimeUnit;
 
 /**
- * A reporter which creates a comma-separated values file of the measurements for each metric.
+ * 一个报告类，该报告类为每个指标创建一个用逗号分隔的测量值文件。
  */
 public class CsvReporter extends ScheduledReporter {
     /**

@@ -3,9 +3,7 @@ package com.codahale.metrics;
 import java.util.Map;
 
 /**
- * A set of named metrics.
- *
- * @see MetricRegistry#registerAll(MetricSet)
+ * 指标集
  */
 public interface MetricSet extends Metric {
     /**

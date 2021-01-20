@@ -6,18 +6,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * An annotation for marking a method of an annotated object as timed.
- * <p/>
- * Given a method like this:
- * <pre><code>
- *     {@literal @}Timed(name = "fancyName")
- *     public String fancyName(String name) {
- *         return "Sir Captain " + name;
- *     }
- * </code></pre>
- * <p/>
- * A timer for the defining class with the name {@code fancyName} will be created and each time the
- * {@code #fancyName(String)} method is invoked, the method's execution will be timed.
+ * 一个注释，用于将一个带注释对象的方法标记为Timer。
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)

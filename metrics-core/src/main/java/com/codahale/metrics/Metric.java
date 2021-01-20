@@ -1,7 +1,7 @@
 package com.codahale.metrics;
 
 /**
- * A tag interface to indicate that a class is a metric.
+ * 一个作为标签的接口，标识一个类是Metrics。
  */
 public interface Metric {
 

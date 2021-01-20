@@ -10,6 +10,9 @@ import static org.fest.assertions.api.Assertions.offset;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+/**
+ * Meter单元测试
+ */
 public class MeterTest {
     private final Clock clock = mock(Clock.class);
     private final Meter meter = new Meter(clock);

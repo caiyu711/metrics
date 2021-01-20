@@ -16,6 +16,9 @@ import java.util.Map;
 import java.util.SortedMap;
 import java.util.concurrent.ExecutorService;
 
+/**
+ * Health check Servlet
+ */
 public class HealthCheckServlet extends HttpServlet {
     public static abstract class ContextListener implements ServletContextListener {
         /**

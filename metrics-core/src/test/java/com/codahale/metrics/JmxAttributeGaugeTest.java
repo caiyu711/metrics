@@ -10,6 +10,9 @@ import static org.fest.assertions.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+/**
+ * JmxAttributeGauge单元测试
+ */
 public class JmxAttributeGaugeTest {
     private final MBeanServer mBeanServer = mock(MBeanServer.class);
     private final ObjectName objectName = mock(ObjectName.class);

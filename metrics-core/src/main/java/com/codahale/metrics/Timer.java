@@ -5,8 +5,9 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.TimeUnit;
 
 /**
- * A timer metric which aggregates timing durations and provides duration statistics, plus
- * throughput statistics via {@link Meter}.
+ * 计时器度量，用于聚合计时持续时间并提供持续时间统计信息，以及通过{@link Meter}的吞吐量统计信息。
+ * Meter和Histogram上增加了时间的概念
+ * Timer本身是没有具体逻辑的，所有的度量都是通过Meter和Histogram进行计算
  */
 public class Timer implements Metered, Sampling {
     /**
@@ -26,8 +27,7 @@ public class Timer implements Metered, Sampling {
         }
 
         /**
-         * Stops recording the elapsed time, updates the timer and returns the elapsed time in
-         * nanoseconds.
+         * 停止记录经过的时间，更新计时器并以纳秒为单位返回经过的时间
          */
         public long stop() {
             final long elapsed = clock.getTick() - startTime;
@@ -75,23 +75,15 @@ public class Timer implements Metered, Sampling {
     }
 
     /**
-     * Adds a recorded duration.
-     *
-     * @param duration the length of the duration
-     * @param unit     the scale unit of {@code duration}
+     * 添加一个记录的持续时间
+     * Histogram.update
      */
     public void update(long duration, TimeUnit unit) {
         update(unit.toNanos(duration));
     }
 
     /**
-     * Times and records the duration of event.
-     *
-     * @param event a {@link Callable} whose {@link Callable#call()} method implements a process
-     *              whose duration should be timed
-     * @param <T>   the type of the value returned by {@code event}
-     * @return the value returned by {@code event}
-     * @throws Exception if {@code event} throws an {@link Exception}
+     * 计时并记录事件的持续时间。
      */
     public <T> T time(Callable<T> event) throws Exception {
         final long startTime = clock.getTick();

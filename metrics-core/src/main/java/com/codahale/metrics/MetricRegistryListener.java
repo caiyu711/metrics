@@ -3,11 +3,11 @@ package com.codahale.metrics;
 import java.util.EventListener;
 
 /**
- * Listeners for events from the registry.  Listeners must be thread-safe.
+ * 注册表中事件的监听器。监听器必须是线程安全的。
  */
 public interface MetricRegistryListener extends EventListener {
     /**
-     * A no-op implementation of {@link MetricRegistryListener}.
+     * MetricRegistryListener的一个无操作实现类
      */
     abstract class Base implements MetricRegistryListener {
         @Override
@@ -52,7 +52,7 @@ public interface MetricRegistryListener extends EventListener {
     }
 
     /**
-     * Called when a {@link Gauge} is added to the registry.
+     * 在将Gauge添加到注册表时调用。
      *
      * @param name  the gauge's name
      * @param gauge the gauge
@@ -60,14 +60,14 @@ public interface MetricRegistryListener extends EventListener {
     void onGaugeAdded(String name, Gauge<?> gauge);
 
     /**
-     * Called when a {@link Gauge} is removed from the registry.
+     * 在将Gauge从注册表移除时调用。
      *
      * @param name the gauge's name
      */
     void onGaugeRemoved(String name);
 
     /**
-     * Called when a {@link Counter} is added to the registry.
+     * 在将Counter添加到注册表时调用。
      *
      * @param name    the counter's name
      * @param counter the counter
@@ -75,14 +75,14 @@ public interface MetricRegistryListener extends EventListener {
     void onCounterAdded(String name, Counter counter);
 
     /**
-     * Called when a {@link Counter} is removed from the registry.
+     * 在将Counter从注册表移除时调用。
      *
      * @param name the counter's name
      */
     void onCounterRemoved(String name);
 
     /**
-     * Called when a {@link Histogram} is added to the registry.
+     * 在将Histogram添加到注册表时调用。
      *
      * @param name      the histogram's name
      * @param histogram the histogram
@@ -90,14 +90,14 @@ public interface MetricRegistryListener extends EventListener {
     void onHistogramAdded(String name, Histogram histogram);
 
     /**
-     * Called when a {@link Histogram} is removed from the registry.
+     * 在将Histogram从注册表移除时调用。
      *
      * @param name the histogram's name
      */
     void onHistogramRemoved(String name);
 
     /**
-     * Called when a {@link Meter} is added to the registry.
+     * 在将Meter添加到注册表时调用。
      *
      * @param name  the meter's name
      * @param meter the meter
@@ -105,14 +105,14 @@ public interface MetricRegistryListener extends EventListener {
     void onMeterAdded(String name, Meter meter);
 
     /**
-     * Called when a {@link Meter} is removed from the registry.
+     * 在将Meter从注册表移除时调用。
      *
      * @param name the meter's name
      */
     void onMeterRemoved(String name);
 
     /**
-     * Called when a {@link Timer} is added to the registry.
+     * 在将Timer添加到注册表时调用。
      *
      * @param name  the timer's name
      * @param timer the timer
@@ -120,7 +120,7 @@ public interface MetricRegistryListener extends EventListener {
     void onTimerAdded(String name, Timer timer);
 
     /**
-     * Called when a {@link Timer} is removed from the registry.
+     * 在将Timer从注册表移除时调用。
      *
      * @param name the timer's name
      */

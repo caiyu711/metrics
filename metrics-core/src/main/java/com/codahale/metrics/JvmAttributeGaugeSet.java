@@ -8,7 +8,7 @@ import java.util.Locale;
 import java.util.Map;
 
 /**
- * A set of gauges for the JVM name, vendor, and uptime.
+ * 一组衡量JVM名称，供应商和正常运行时间的指标。
  */
 public class JvmAttributeGaugeSet implements MetricSet {
     private final RuntimeMXBean runtime;

@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
 import static com.codahale.metrics.MetricRegistry.name;
 
 /**
- * A {@link ClientConnectionManager} which monitors the number of open connections.
+ * 一个ClientConnectionManager，用于监控打开的连接数
  */
 public class InstrumentedClientConnManager extends PoolingClientConnectionManager {
     public InstrumentedClientConnManager(MetricRegistry metricRegistry) {

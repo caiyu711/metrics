@@ -15,8 +15,7 @@ import java.util.regex.Pattern;
 import static com.codahale.metrics.MetricRegistry.name;
 
 /**
- * A set of gauges for JVM memory usage, including stats on heap vs. non-heap memory, plus
- * GC-specific memory pools.
+ * 一组衡量JVM内存使用情况的指标，包括堆与非堆内存的统计信息，以及特定GC的内存池。
  */
 public class MemoryUsageGaugeSet implements MetricSet {
     private static final Pattern WHITESPACE = Pattern.compile("[\\s]+");

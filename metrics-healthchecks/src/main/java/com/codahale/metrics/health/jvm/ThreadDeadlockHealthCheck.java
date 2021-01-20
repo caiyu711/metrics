@@ -6,7 +6,7 @@ import com.codahale.metrics.jvm.ThreadDeadlockDetector;
 import java.util.Set;
 
 /**
- * A health check which returns healthy if no threads are deadlocked.
+ * 如果没有线程死锁，则运行状况检查将返回健康状态。（线程死锁检查）
  */
 public class ThreadDeadlockHealthCheck extends HealthCheck {
     private final ThreadDeadlockDetector detector;
